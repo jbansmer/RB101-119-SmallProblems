@@ -2,28 +2,30 @@
 
 LETTERS = %w(a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
 
-def next_in_array(element)
-  new_array = []
-
-end
-
 def cleanup(string)
-  chars = string.split(' ')
-  letters_array = []
-  p chars
-  # chars.map! do |letter|
-  #   if LETTERS.include?(letter)
-  #     letters_array << letter
-  #   else
-  #     letters_array << ' '
-  #   end
-  # end
-  # p string = letters_array.join
+  string = string.chars
+  string.map! do |letter|
+    if LETTERS.include?(letter)
+      letter = letter
+    else
+      letter = ' '
+    end
+  end
+  string = string.join
+  array = string.chars
+  array_index = 0
+  array_length = array.length
+  result = ''
+  loop do
+    break if array[array_index] == nil
+    if array[array_index] == ' ' && array[array_index + 1] == ' '
+      array_index += 1
+    else
+      result << array[array_index]
+      array_index += 1
+    end
+  end
+  p result
 end
 
-# cleanup("---what's my +*& line?") == ' what s my line '
-# p next_in_array(["---what's"])
-# p next_in_array(["+*&"])
-# p next_in_array(["my"])
-
-p "   what s".strip
+p cleanup("---what's my +*& line?") == ' what s my line '
